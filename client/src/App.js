@@ -1,9 +1,22 @@
 import React from 'react';
 
+// Page Imports
+import Homepage from './pages/Homepage';
+
+// Component Imports
+
 function App() {
   return (
     <section class='app'>
-        React Application Test
+      <header>
+        HEADER HERE
+      </header>
+      <div>
+        <Homepage />
+      </div>
+      <footer>
+        FOOTER HERE
+      </footer>
     </section>
   );
 }
