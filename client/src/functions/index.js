@@ -75,6 +75,8 @@ export const cleanDataFx = (data) => {
 
 // FUNCTION 1: Determining if a good bet based on last year average alone ===================
 
+// COPY FUNCTIONS BELOW AND USE FOR 2022 ONCE MAKE THE AVG CLENAUP ABOVE ^^^
+
 // FUNCTION 2: Determining if a good bet based on 2021 ======================================
 
 export const functionTwo = (data, prizePickProps) => {

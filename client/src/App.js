@@ -2,6 +2,7 @@ import React from 'react';
 
 // Page Imports
 import Homepage from './pages/Homepage';
+import Results from './pages/Results';
 
 // Component Imports
 
@@ -13,6 +14,9 @@ function App() {
       </header>
       <div>
         <Homepage />
+      </div>
+      <div>
+        <Results />
       </div>
       <footer>
         FOOTER HERE
