@@ -5,13 +5,18 @@ export const playerData = {
     "player_stats": {
       "2020": {
         "games": 16,
-        "passing_yards": 4299,
-        "passing_touchdowns": 48
+        "passing_yards": 4567.6875,
+        "passing_touchdowns": 51
       },
       "2021": {
         "games": 15,
-        "passing_yards": 3977,
-        "passing_touchdowns": 35
+        "passing_yards": 4507.266666666666,
+        "passing_touchdowns": 39.66666666666667
+      },
+      "2022": {
+        "games": 17,
+        "passing_yards": 3695,
+        "passing_touchdowns": 26
       },
       "2022week": [
         {
@@ -91,12 +96,17 @@ export const playerData = {
     "player_stats": {
       "2020": {
         "games": 15,
-        "passing_yards": 4740,
-        "passing_touchdowns": 37
+        "passing_yards": 5372,
+        "passing_touchdowns": 41.93333333333334
       },
       "2021": {
         "games": 17,
         "passing_yards": 4839,
+        "passing_touchdowns": 41
+      },
+      "2022": {
+        "games": 17,
+        "passing_yards": 5250,
         "passing_touchdowns": 41
       },
       "2022week": [
@@ -176,12 +186,19 @@ export const playerData = {
     "position": "rb",
     "player_stats": {
       "2020": {
-        "rushing_yards": 2027,
-        "rushing_touchdowns": 17
+        "games": 16,
+        "rushing_yards": 2153.6875,
+        "rushing_touchdowns": 18.0625
       },
       "2021": {
-        "rushing_yards": 937,
-        "rushing_touchdowns": 10
+        "games": 8,
+        "rushing_yards": 1991.125,
+        "rushing_touchdowns": 21.25
+      },
+      "2022": {
+        "games": 16,
+        "rushing_yards": 1634.125,
+        "rushing_touchdowns": 13.8125
       },
       "2022week": [
         {
@@ -256,14 +273,22 @@ export const playerData = {
     "position": "wr",
     "player_stats": {
       "2020": {
-        "receiving_yards": 1400,
-        "receiving_touchdowns": 7,
-        "receiving_receptions": 88
+        "games": 16,
+        "receiving_yards": 1487.5,
+        "receiving_touchdowns": 7.4375,
+        "receiving_receptions": 93.5
       },
       "2021": {
+        "games": 17,
         "receiving_yards": 1616,
         "receiving_touchdowns": 10,
         "receiving_receptions": 108
+      },
+      "2022": {
+        "games": 16,
+        "receiving_yards": 1881.6875,
+        "receiving_touchdowns": 8.5,
+        "receiving_receptions": 131.75
       },
       "2022week": [
         {
@@ -349,4 +374,4 @@ export const playerData = {
       ]
     }
   }
-}
+};
