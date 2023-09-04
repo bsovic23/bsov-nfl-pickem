@@ -490,5 +490,35 @@ export const propResults = (fx1, fx2, fx3, fx4) => {
 
 
 // ======================================================================================
-//                                
+//                                Sort Combined Array By Challenge
 // ======================================================================================
+
+export const sortPropResults = (array) => {
+    const propGroups = {}; // Initialize as an object
+
+    for (const obj of array) {
+        let propTitle = obj["Prop Title"];
+        let player = obj.name;
+        let test = obj.test;
+        let propPrediction = obj["Prop Prediction"];
+
+        // Check if the key for this propTitle exists, create it if it doesn't
+        if (!propGroups[propTitle]) {
+            propGroups[propTitle] = {
+                "Prop": propTitle,
+                "Results": []
+            };
+        }
+
+        // Push the data to the corresponding Results array
+        propGroups[propTitle]["Results"].push({
+            "Player": player,
+            "Test": test,
+            "Prop Title": propTitle,
+            "Prop Prediction": propPrediction
+        });
+    }
+
+    console.log(propGroups);
+    return propGroups;
+};

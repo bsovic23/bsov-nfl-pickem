@@ -6,69 +6,68 @@ import React, { useState } from 'react';
 // Component Imports
 
 
-// Function and Data Imports
-import { playerData } from '../data/playerDataClean';
-import { props } from '../data/PropData';
+// Data Imports
+import { propResultsSortedFinal } from '../data/PropResultsSortedFinal';
 
-import { functionOne } from '../functions';
+const Challenges = () => {
+    const allResults = propResultsSortedFinal;
 
-export const Challenges = () => {
-
-    const prop2022Results = functionOne(playerData, props);
-    console.log(prop2022Results);
-
-    return(
-        <section class='page' id='challenges'>
+    return (
+        <section className='page' id='challenges'>
             <div>
-                navbar here
+                NAVBAR
             </div>
             <h1>PrizePick Challenges</h1>
             <section>
                 <p>
-                    Below are all the challenges based on
-                    last seasons stats. All players had games
-                    dropped in which they played less than 50% 
-                    of the game due to injury / playoff position 
-                    set so didnt play much of the game. Using the
-                    averages and standardized for 17 games that final
-                    stat was compared to the PrizePick Prop
+                    Below are all the different prop testing outcomes based on various levels. All players had games
+                    dropped in which they played less than 50% of the game due to injury / playoff position
+                    set so they didn't play much of the game. Using the averages and standardized for 17 games,
+                    that final stat was compared to the PrizePick Prop.
                 </p>
-                <p>
-                    If you would like to just view by different individual 
-                    tests, click the challenge name below
-                </p>
+                <h2>Below are the test descriptions</h2>
+                <li>szn_2022_avg: Based on last seasons data (2022)</li>
+                <li>szn_2021_avg: Based on 2 seasons ago data (2021)</li>
+                <li>szn_2020_avg: Based on 3 seasons ago data (2020)</li>
+                <li>nonInflated2022Games: Based on last season, but does not include games in which did 25% better than season average. If passes this test, an indication that a pretty mediocre/average season will beat the prop rather than needing one or more BIG games</li>
             </section>
             <section>
-                FORM HERE FOR CLICKING THE DIFFERENT CHALLENGES
+                FORM FOR CLICKING DIFFERENT
             </section>
             <section>
                 <h2>Challenges</h2>
-                <div>
-                    <h3>Passing Yards Total</h3>
-                    {prop2022Results ? (
-                        <div>
-                        {prop2022Results.map((player, index) => (
-                            <div key={index}>
-                                <p>
-                                    Player Name: {player.name}
-                                    <br />
-                                    2022 Season vs 2023 PrizePicks Prop: {player["Prop Prediction"]}
-                                </p>
-                            </div>
-                        ))}
+                {Object.keys(allResults).map((propTitle) => {
+                    const propGroup = allResults[propTitle];
+                    return (
+                        <div key={propTitle}>
+                            <h3>{propTitle}</h3>
+                            <table border="1">
+                                <thead>
+                                    <tr>
+                                        <th>Player</th>
+                                        <th>Test</th>
+                                        <th>Prop Prediction</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {propGroup.Results.map((result, index) => (
+                                        <tr key={index}>
+                                            <td>{result.Player}</td>
+                                            <td>{result.Test}</td>
+                                            <td>{result["Prop Prediction"]}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
-                    ) : (
-                        <div>
-                            NO RESULTS FOR THIS CHALLENGE
-                        </div>
-                    )}
-                </div>
+                    );
+                })}
             </section>
             <section>
-                FOOTER HERE
+                FOOTER
             </section>
         </section>
-    )
+    );
 };
 
 export default Challenges;
