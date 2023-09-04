@@ -308,6 +308,159 @@ export const functionThree = (data, prizePickProps) => {
 
 // FUNCTION 4: Minus abnormalities is this a good bet ===================================
 
+export const functionFour = (data, prizePickProps) => {
+    const propPredictionsFxFour = [];
+    const new2022Data = {};
+    const new2022SeasonData = {};
+
+    Object.values(data).forEach((playerData) => {
+        let position = playerData.position;
+
+        if (position === 'qb') {
+            const avg25percent = (playerData.player_stats["2022"]["passing_yards"] / 17) * 1.25;
+
+            playerData.player_stats["2022week"].forEach((passing2022) => {
+                let weekYards = passing2022.passing_yards;
+
+                if (weekYards < avg25percent) {
+                    if (!new2022Data[playerData.player_name]) {
+                        new2022Data[playerData.player_name] = {
+                            "name": playerData.player_name,
+                            "position": position,
+                            "2022nonInflatedGames": []
+                        };
+                    }
+                    new2022Data[playerData.player_name]["2022nonInflatedGames"].push(weekYards);
+                } else {
+                    null;
+                }
+            });
+        } else if (position === 'rb') {
+
+            const avg25percent = (playerData.player_stats["2022"]["rushing_yards"] / 17) * 1.25;
+
+            playerData.player_stats["2022week"].forEach((rushing2022) => {
+                let weekYards = rushing2022.rushing_yards;
+
+                if (weekYards < avg25percent) {
+                    if (!new2022Data[playerData.player_name]) {
+                        new2022Data[playerData.player_name] = {
+                            "name": playerData.player_name,
+                            "position": position,
+                            "2022nonInflatedGames": []
+                        };
+                    }
+                    new2022Data[playerData.player_name]["2022nonInflatedGames"].push(weekYards);
+                } else {
+                    null;
+                }
+            });
+
+        } else if (position === 'wr' || 'te') {
+
+            const avg25percent = (playerData.player_stats["2022"]["receiving_yards"] / 17) * 1.25;
+
+            playerData.player_stats["2022week"].forEach((receiving2022) => {
+                let weekYards = receiving2022.receiving_yards;
+
+                if (weekYards < avg25percent) {
+                    if (!new2022Data[playerData.player_name]) {
+                        new2022Data[playerData.player_name] = {
+                            "name": playerData.player_name,
+                            "position": position,
+                            "2022nonInflatedGames": []
+                        };
+                    }
+                    new2022Data[playerData.player_name]["2022nonInflatedGames"].push(weekYards);
+                } else {
+                    null;
+                }
+            });
+        }
+    });
+
+    const new2022DataArray = Object.values(new2022Data);
+
+    // Now taking the newDataArray and determining the averages based on non-inflated games vs prizepick props
+
+    new2022DataArray.forEach((nonInflatedGames) => {
+        let position = nonInflatedGames.position;
+        let games = nonInflatedGames["2022nonInflatedGames"];
+        let name = nonInflatedGames['name'];
+
+        if (position === 'qb') {
+            let totalYards = games.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+            let gameNumber = games.length;
+            let nonInflatedTotalYards = (totalYards / gameNumber ) * 17;
+
+            // Add "NonInflatedTotalYards" to new2022SeasonData
+            new2022SeasonData[name] = {
+                "name": name,
+                "position": position,
+                "NonInflatedTotalYards": nonInflatedTotalYards
+            };
+        } else if (position === 'rb') {
+
+            let totalYards = games.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+            let gameNumber = games.length;
+            let nonInflatedTotalYards = (totalYards / gameNumber ) * 17;
+
+            // Add "NonInflatedTotalYards" to new2022SeasonData
+            new2022SeasonData[name] = {
+                "name": name,
+                "position": position,
+                "NonInflatedTotalYards": nonInflatedTotalYards
+            };
+
+        } else if (position === 'wr' || position === 'te') {
+
+            let totalYards = games.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+            let gameNumber = games.length;
+            let nonInflatedTotalYards = (totalYards / gameNumber ) * 17;
+
+            // Add "NonInflatedTotalYards" to new2022SeasonData
+            new2022SeasonData[name] = {
+                "name": name,
+                "position": position,
+                "NonInflatedTotalYards": nonInflatedTotalYards
+            };
+        }
+    });
+
+    const new2022SeasonDataArray = Object.values(new2022SeasonData);
+
+    // Now take above and compare to PrizePick Prop Values
+    Object.values(prizePickProps).forEach((prop) => {
+
+        // Prop Variables -- Will stay the same for every function
+
+        const propPlayerName = prop.prop_name;
+        const propTitle = prop.prop_title;
+        const propStat = prop.prop_stat;
+
+        // Player Variables - Will change based on what prop the function is testing for
+
+        let player = new2022SeasonDataArray.find(player => player.name === propPlayerName);
+        let playerStat = player ? player["NonInflatedTotalYards"] : undefined;
+    
+        // Determining if the player beat the prop
+
+        if (playerStat !== undefined) {
+            if (playerStat > propStat) {
+                propPredictionsFxFour.push({'name': propPlayerName, 'test': 'nonInflated2022Games', 'Prop Title': propTitle, 'Prop Prediction': 'Yes Beat Prop' });
+            } else if (playerStat < propStat) {
+                propPredictionsFxFour.push({'name': propPlayerName, 'test': 'nonInflated2022Games', 'Prop Title': propTitle, 'Prop Prediction': 'No Beat Prop' });
+            } else {
+                console.log('Error: Player stat is equal to the prop stat');
+            }
+        } else {
+            console.log(`Error: Player ${propPlayerName} not found in new2022SeasonDataArray`);
+        }
+    });
+
+    // Return Final
+    return propPredictionsFxFour;
+};
 
 
 
@@ -318,10 +471,10 @@ export const functionThree = (data, prizePickProps) => {
 //                                Combine Results Into One Array
 // ======================================================================================
 
-export const propResults = (fx1, fx2, fx3) => {
+export const propResults = (fx1, fx2, fx3, fx4) => {
     const propArray = [];
 
-    const combinedArray = fx1.concat(fx2, fx3);
+    const combinedArray = fx1.concat(fx2, fx3, fx4);
 
     for (const obj of combinedArray) {
         let playerName = obj.name;

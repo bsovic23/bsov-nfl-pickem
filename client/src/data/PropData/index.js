@@ -4,3 +4,4 @@ export const props = [
     {id: 3, prop_name: 'Derrick Henry', prop_title: 'Rushing Yards Total', prop_stat: '1175.5'},
     {id: 4, prop_name: 'Justin Jefferson', prop_title: 'Receiving Yards Total', prop_stat: '1399.5'},
 ];
+

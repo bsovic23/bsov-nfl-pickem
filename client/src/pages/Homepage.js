@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { cleanDataOneFx, cleanDataTwoFx, cleanDataThreeFx, functionOne, functionTwo, functionThree, propResults } from '../functions';
+import { cleanDataOneFx, cleanDataTwoFx, cleanDataThreeFx, functionOne, functionTwo, functionThree, functionFour, propResults } from '../functions';
 import { playerDataRaw } from '../data/PlayerDataRaw';
 import { props } from '../data/PropData';
 import { playerData } from '../data/playerDataClean';
@@ -16,9 +16,11 @@ const Homepage = () => {
     const test1 = functionOne(playerData, props);
     const test2 = functionTwo(playerData, props);
     const test3 = functionThree(playerData, props);
+    const test4 = functionFour(playerData, props);
+    console.log(test4);
 
     // Combine Prop Tests into one 
-    const propResultsOutput = propResults(test1, test2, test3);
+    const propResultsOutput = propResults(test1, test2, test3, test4);
 
     return(
         <section class='page' id='homepage'>
@@ -56,6 +58,16 @@ const Homepage = () => {
                 <h1>FUNCTION THREE</h1>
                 {test3 ?
                     (<pre>{JSON.stringify(test3, null, 2)}</pre>)
+                :
+                (<div>
+                    No data
+                </div>)
+                }
+            </div>
+            <div>
+                <h1>FUNCTION FOUR</h1>
+                {test4 ?
+                    (<pre>{JSON.stringify(test4, null, 2)}</pre>)
                 :
                 (<div>
                     No data
