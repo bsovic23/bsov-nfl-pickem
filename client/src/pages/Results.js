@@ -6,7 +6,14 @@ import React from 'react';
 // Component Imports
 
 
+// Function and Data Imports
+
+
+
 const Results = () => {
+
+    
+
     return(
         <section class='page' id='results'>  
             <div>
