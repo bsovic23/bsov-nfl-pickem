@@ -192,7 +192,7 @@ export const cleanDataThreeFx = (data) => {
 
 export const functionOne = (data, prizePickProps) => {
 
-    const propPredictionsFxTwo = [];
+    const propPredictionsFxOne = [];
 
     Object.values(prizePickProps).forEach((prop) => {
 
@@ -207,24 +207,29 @@ export const functionOne = (data, prizePickProps) => {
         const playerPosition = data[propPlayerName].position;
         let playerStat = '';
 
+        console.log("Checking player:", propPlayerName);
+
         if (playerPosition === 'qb') {
             playerStat = data[propPlayerName].player_stats["2022"].passing_yards;
         } else if (playerPosition === 'rb') {
             playerStat = data[propPlayerName].player_stats["2022"].rushing_yards;
         } else if (playerPosition === 'wr' || playerPosition === 'te') {
             playerStat = data[propPlayerName].player_stats["2022"].receiving_yards;
-        } else return `PLAYER POSITION ERROR`;
+        } else {
+            console.log('PLAYER POSITION ERROR for:', propPlayerName);
+            return `PLAYER POSITION ERROR for: ${propPlayerName}`;
+        };
 
         // Determining if the player beat the prop
 
         if (playerStat > propStat) {
-            propPredictionsFxTwo.push({'name': propPlayerName, 'test': 'szn_2022_avg', 'Prop Title': propTitle, 'Prop Prediction': 'Yes Beat Prop' });
+            propPredictionsFxOne.push({'name': propPlayerName, 'test': 'szn_2022_avg', 'Prop Title': propTitle, 'Prop Prediction': 'Yes Beat Prop' });
         } else if (playerStat < propStat) {
-            propPredictionsFxTwo.push({'name': propPlayerName, 'test': 'szn_2022_avg', 'Prop Title': propTitle, 'Prop Prediction': 'No Beat Prop' });
+            propPredictionsFxOne.push({'name': propPlayerName, 'test': 'szn_2022_avg', 'Prop Title': propTitle, 'Prop Prediction': 'No Beat Prop' });
         } else console.log('Error');
     });
 
-    return propPredictionsFxTwo;
+    return propPredictionsFxOne;
 };
 
 // FUNCTION 2: Determining if a good bet based on 2021 ======================================
@@ -471,10 +476,10 @@ export const functionFour = (data, prizePickProps) => {
 //                                Combine Results Into One Array
 // ======================================================================================
 
-export const propResults = (fx1, fx2, fx3, fx4) => {
+export const propResults = (fx1, fx2, fx3, fx4, td1, td2, td3, rec1, rec2, rec3) => {
     const propArray = [];
 
-    const combinedArray = fx1.concat(fx2, fx3, fx4);
+    const combinedArray = fx1.concat(fx2, fx3, fx4, td1, td2, td3, rec1, rec2, rec3);
 
     for (const obj of combinedArray) {
         let playerName = obj.name;

@@ -21,7 +21,7 @@ const Challenges = () => {
             <section>
                 <p>
                     Below are all the different prop testing outcomes based on various levels. All players had games
-                    dropped in which they played less than 50% of the game due to injury / playoff position
+                    dropped in which they played less than 50% (for Quarterbacks) and 25% (for RB, WR, TE) of the game due to injury / playoff position
                     set so they didn't play much of the game. Using the averages and standardized for 17 games,
                     that final stat was compared to the PrizePick Prop.
                 </p>

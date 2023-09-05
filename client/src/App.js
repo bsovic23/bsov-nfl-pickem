@@ -11,16 +11,13 @@ function App() {
   return (
     <section class='app'>
       <header>
-        HEADER HERE
+        BSOV PRIZEPICKS GUIDE TO SUCCESS
       </header>
       <div>
         <Homepage />
       </div>
       <div>
         <Challenges />
-      </div>
-      <div>
-        <Results />
       </div>
       <footer>
         FOOTER HERE
