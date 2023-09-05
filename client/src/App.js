@@ -14,13 +14,10 @@ function App() {
         BSOV PRIZEPICKS GUIDE TO SUCCESS
       </header>
       <div>
-        <Homepage />
-      </div>
-      <div>
         <Challenges />
       </div>
       <footer>
-        FOOTER HERE
+        THanks for checking this app out!
       </footer>
     </section>
   );
